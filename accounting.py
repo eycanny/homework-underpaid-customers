@@ -8,17 +8,24 @@ def calculate_expected_total(item_amount, cost):
 
 def return_first_name(name):
     """Returns first name of a name."""
+    #remove left whitespace
     name = name.lstrip()
+    #create new string
     first_name = ""
 
+    #loop through name
     for char in name:
+        #if it isn't a space, add to string
         if char != " ":
             first_name += char
+        #if it is a space, return first name
         else:
             return first_name
 
 
-def track_customer_payments(file):
+def print_payment_status(file):
+    melon_cost = 1.00
+
     #open file
     the_file = open(file)
     #loop through each line
@@ -30,67 +37,15 @@ def track_customer_payments(file):
         name = return_first_name(tokens[1])
         #convert index 2 into a int
         melons = int(tokens[2])
-        #convert index 3 into a float
-        payments = float(tokens[3])
+        #convert into money format
+        actual_payments = float(tokens[3])
+        expected_payments = calculate_expected_total(melons, melon_cost)
 
-melon_cost = 1.00
+        #if expected payment doesn't match actual payment
+        if expected_payments != actual_payments:
+            #print discrepancy message
+            print(f"{name.title()} paid ${actual_payments},",
+                  f"expected ${expected_payments:.2f}"
+                  )
 
-customer1_name = "Joe"
-customer1_melons = 5
-customer1_paid = 5.00
-
-customer2_name = "Frank"
-customer2_melons = 6
-customer2_paid = 6.00
-
-customer3_name = "Sally"
-customer3_melons = 3
-customer3_paid = 3.00
-
-customer4_name = "Sean"
-customer4_melons = 9
-customer4_paid = 9.50
-
-customer5_name = "David"
-customer5_melons = 4
-customer5_paid = 4.00
-
-customer6_name = "Ashley"
-customer6_melons = 3
-customer6_paid = 2.00
-
-customer1_expected = customer1_melons * melon_cost
-if customer1_expected != customer1_paid:
-    print(f"{customer1_name} paid ${customer1_paid:.2f},",
-          f"expected ${customer1_expected:.2f}"
-          )
-
-customer2_expected = customer2_melons * melon_cost
-if customer2_expected != customer2_paid:
-    print(f"{customer2_name} paid ${customer2_paid:.2f},",
-          f"expected ${customer2_expected:.2f}"
-          )
-
-customer3_expected = customer3_melons * melon_cost
-if customer3_expected != customer3_paid:
-    print(f"{customer3_name} paid ${customer3_paid:.2f},",
-          f"expected ${customer3_expected:.2f}"
-          )
-
-customer4_expected = customer4_melons * melon_cost
-if customer4_expected != customer4_paid:
-    print(f"{customer4_name} paid ${customer4_paid:.2f},",
-          f"expected ${customer4_expected:.2f}"
-          )
-
-customer5_expected = customer5_melons * melon_cost
-if customer5_expected != customer5_paid:
-    print(f"{customer5_name} paid ${customer5_paid:.2f},",
-          f"expected ${customer5_expected:.2f}"
-          )
-
-customer6_expected = customer6_melons * melon_cost
-if customer6_expected != customer6_paid:
-    print(f"{customer6_name} paid ${customer6_paid:.2f},",
-          f"expected ${customer6_expected:.2f}"
-          )
+    the_file.close()
