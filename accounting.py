@@ -1,3 +1,5 @@
+MELON_COST = 1.00
+
 def calculate_expected_total(item_amount, cost):
     """Take item amount and cost as inputs and return an expected total.
 
@@ -24,7 +26,6 @@ def return_first_name(name):
 
 
 def print_payment_status(file):
-    melon_cost = 1.00
 
     #open file
     the_file = open(file)
@@ -39,7 +40,7 @@ def print_payment_status(file):
         melons = int(tokens[2])
         #convert into money format
         actual_payments = float(tokens[3])
-        expected_payments = calculate_expected_total(melons, melon_cost)
+        expected_payments = calculate_expected_total(melons, MELON_COST)
 
         #if expected payment doesn't match actual payment
         if expected_payments != actual_payments:
