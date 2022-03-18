@@ -28,9 +28,9 @@ def return_first_name(name):
 def print_payment_status(file):
 
     #open file
-    the_file = open(file)
+    payment_data = open(file)
     #loop through each line
-    for line in the_file:
+    for line in payment_data:
         #tokenize each line; list = [customer id, name, melons delivered, payment]
         tokens = line.split("|")
 
@@ -49,4 +49,4 @@ def print_payment_status(file):
                   f"expected ${expected_payments:.2f}"
                   )
 
-    the_file.close()
+    payment_data.close()
