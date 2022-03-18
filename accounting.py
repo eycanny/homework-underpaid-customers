@@ -1,3 +1,38 @@
+def calculate_expected_total(item_amount, cost):
+    """Take item amount and cost as inputs and return an expected total.
+
+    """
+    expected_total = item_amount * cost
+
+    return expected_total
+
+def return_first_name(name):
+    """Returns first name of a name."""
+    name = name.lstrip()
+    first_name = ""
+
+    for char in name:
+        if char != " ":
+            first_name += char
+        else:
+            return first_name
+
+
+def track_customer_payments(file):
+    #open file
+    the_file = open(file)
+    #loop through each line
+    for line in the_file:
+        #tokenize each line; list = [customer id, name, melons delivered, payment]
+        tokens = line.split("|")
+
+        #isolate first name
+        name = return_first_name(tokens[1])
+        #convert index 2 into a int
+        melons = int(tokens[2])
+        #convert index 3 into a float
+        payments = float(tokens[3])
+
 melon_cost = 1.00
 
 customer1_name = "Joe"
