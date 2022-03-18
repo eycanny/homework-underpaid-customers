@@ -49,4 +49,10 @@ def print_payment_status(file):
                   f"expected ${expected_payments:.2f}"
                   )
 
+        #if overpaid
+        if expected_payments < actual_payments:
+            print(f"{name.title()} overpaid for their melons.")
+        elif expected_payments > actual_payments:
+            print(f"{name.title()} underpaid for their melons.")
+
     payment_data.close()
